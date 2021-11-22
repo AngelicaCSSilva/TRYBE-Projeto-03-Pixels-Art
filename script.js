@@ -1,4 +1,5 @@
 const pixelBoard = document.querySelector('#pixel-board');
+const colors = document.getElementById('color-palette');
 
 function createPixelBoard() {
   for (let lines = 0; lines < 5; lines += 1) {
@@ -18,5 +19,16 @@ function selectDefaultColor() {
   blackColor.classList.add('selected');
 }
 
+function wipePreviousColor() {
+  const previousColor = document.querySelector('.selected');
+  previousColor.classList.remove('selected');
+}
+
+function changeColor(event) {
+  wipePreviousColor();
+  event.target.classList.add('selected');
+}
+
+colors.addEventListener('click', changeColor);
 createPixelBoard();
 selectDefaultColor();

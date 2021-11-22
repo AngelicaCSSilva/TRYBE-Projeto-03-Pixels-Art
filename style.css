@@ -14,8 +14,13 @@
     width: 1366px;
 }
 
+#color-palette{
+    display: flex;
+	flex-direction: row;
+}
 
 .color {
+    margin: 5px 5px;
     padding: 10px 15px;
     border: 1px solid black;
 }
