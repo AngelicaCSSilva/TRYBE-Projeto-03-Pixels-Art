@@ -1,6 +1,14 @@
 const pixelBoard = document.querySelector('#pixel-board');
 const colors = document.getElementById('color-palette');
 
+function fillPixel(event) {
+  const selectedColor = document.querySelector('.selected');
+  const getBackgroundColor = getComputedStyle(selectedColor).backgroundColor;
+
+  const clickedPixel = event.target;
+  clickedPixel.style.backgroundColor = getBackgroundColor;
+}
+
 function createPixelBoard() {
   for (let lines = 0; lines < 5; lines += 1) {
     const boardLine = document.createElement('div');
@@ -8,6 +16,7 @@ function createPixelBoard() {
     for (let collums = 0; collums < 5; collums += 1) {
       const colorBox = document.createElement('div');
       colorBox.className = 'pixel';
+      boardLine.addEventListener('click', fillPixel);
       boardLine.appendChild(colorBox);
     }
     pixelBoard.appendChild(boardLine);
@@ -15,7 +24,7 @@ function createPixelBoard() {
 }
 
 function selectDefaultColor() {
-  const blackColor = document.querySelector('#black');
+  const blackColor = document.querySelector('.black');
   blackColor.classList.add('selected');
 }
 
@@ -30,5 +39,6 @@ function changeColor(event) {
 }
 
 colors.addEventListener('click', changeColor);
+
 createPixelBoard();
 selectDefaultColor();
