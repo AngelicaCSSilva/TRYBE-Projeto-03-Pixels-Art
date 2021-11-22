@@ -58,3 +58,7 @@
   height: 40px;
 }
 
+#clear-board {
+  padding: 5px 15px;
+  font-size: 0.9em;
+}
