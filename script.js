@@ -125,7 +125,7 @@ function getRandomColor() {
   return color;
 }
 
-// Função que coloca cores aleatórias na paleta. 
+// Função que coloca cores aleatórias na paleta.
 function putRandomColor() {
   const rdnColor = document.querySelectorAll('.rdnColor');
   for (let index = 0; index < rdnColor.length; index += 1) {
@@ -133,7 +133,7 @@ function putRandomColor() {
   }
 }
 
-putRandomColor()
+putRandomColor();
 createPixelBoard();
 selectDefaultColor();
 buttonClear();
