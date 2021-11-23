@@ -23,12 +23,13 @@ function fillPixel(event) {
 
 // Função que cria o board com as dimensões de 5x5.
 const pixelBoard = document.querySelector('#pixel-board');
+let size = 5;
 
 function createPixelBoard() {
-  for (let lines = 0; lines < 5; lines += 1) {
+  for (let lines = 0; lines < size; lines += 1) {
     const boardLine = document.createElement('div');
     boardLine.className = 'line';
-    for (let collums = 0; collums < 5; collums += 1) {
+    for (let collums = 0; collums < size; collums += 1) {
       const colorBox = document.createElement('div');
       colorBox.className = 'pixel';
       boardLine.addEventListener('click', fillPixel);
@@ -62,7 +63,53 @@ function paletteSelection() {
   colors.addEventListener('click', changeColor);
 }
 
+function validateSize(value) {
+  if (value === 0 || value === '') {
+    return false;
+  }
+  return true;
+}
+
+function deleteBoard(children) {
+  for (let index = (children.length - 1); index >= 0; index -= 1) {
+    children[index].remove();
+  }
+}
+
+function recreateBoard() {
+  deleteBoard(pixelBoard.children);
+  createPixelBoard();
+}
+
+function doSize(boardSize) {
+  if (boardSize > 50) {
+    size = 50;
+  } else if (boardSize < 5) {
+    size = 5;
+  } else {
+    size = boardSize;
+  }
+}
+
+function getBoardSize() {
+  const queryBoardSize = document.querySelector('#board-size');
+  const boardSize = queryBoardSize.value;
+  const validate = validateSize(boardSize);
+  if (validate === false) {
+    alert('Board inválido!');
+  } else {
+    doSize(boardSize);
+  }
+  recreateBoard();
+}
+
+function submitSize() {
+  const submitBtn = document.querySelector('#generate-board');
+  submitBtn.addEventListener('click', getBoardSize);
+}
+
 createPixelBoard();
 selectDefaultColor();
 buttonClear();
 paletteSelection();
+submitSize();
