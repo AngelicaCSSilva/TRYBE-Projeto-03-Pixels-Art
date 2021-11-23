@@ -21,7 +21,7 @@ function fillPixel(event) {
   clickedPixel.style.backgroundColor = getBackgroundColor;
 }
 
-// Função que cria o board com as dimensões de 5x5.
+// Função que cria o board com as dimensões iniciais de 5x5.
 const pixelBoard = document.querySelector('#pixel-board');
 let size = 5;
 
@@ -63,6 +63,7 @@ function paletteSelection() {
   colors.addEventListener('click', changeColor);
 }
 
+// Função que valida o valor do input.
 function validateSize(value) {
   if (value === 0 || value === '') {
     return false;
@@ -70,17 +71,20 @@ function validateSize(value) {
   return true;
 }
 
+// Função que deleta o board anterior.
 function deleteBoard(children) {
   for (let index = (children.length - 1); index >= 0; index -= 1) {
     children[index].remove();
   }
 }
 
+// Função que cria um novo board.
 function recreateBoard() {
   deleteBoard(pixelBoard.children);
   createPixelBoard();
 }
 
+// Função que calcula o size do board (min. 5 / max. 50).
 function doSize(boardSize) {
   if (boardSize > 50) {
     size = 50;
@@ -91,6 +95,7 @@ function doSize(boardSize) {
   }
 }
 
+// Função que pega o input do usuário e cria um novo board conforme tamanho informado.
 function getBoardSize() {
   const queryBoardSize = document.querySelector('#board-size');
   const boardSize = queryBoardSize.value;
@@ -103,11 +108,32 @@ function getBoardSize() {
   recreateBoard();
 }
 
+// Função que adiciona event listener para o botão de gerar um novo board.
 function submitSize() {
   const submitBtn = document.querySelector('#generate-board');
   submitBtn.addEventListener('click', getBoardSize);
 }
 
+// Função que gera cores aleatórias.
+// ref.: https://stackoverflow.com/questions/1484506/random-color-generator
+function getRandomColor() {
+  const canBe = '0123456789ABCDEF';
+  let color = '#';
+  for (let letter = 0; letter < 6; letter += 1) {
+    color += canBe[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+// Função que coloca cores aleatórias na paleta. 
+function putRandomColor() {
+  const rdnColor = document.querySelectorAll('.rdnColor');
+  for (let index = 0; index < rdnColor.length; index += 1) {
+    rdnColor[index].style.backgroundColor = getRandomColor();
+  }
+}
+
+putRandomColor()
 createPixelBoard();
 selectDefaultColor();
 buttonClear();
