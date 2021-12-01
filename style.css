@@ -20,25 +20,13 @@
 
 .color {
   margin: 5px;
-  padding: 10px 15px;
+  padding: 15px 30px;
   border: 1px solid black;
 }
 
 .black {
   background-color: black;
 }
-
-/* .yellow {
-  background-color: yellow;
-}
-
-.blue {
-  background-color: blue;
-}
-
-.red {
-  background-color: red;
-} */
 
 #pixel-board {
   margin-top: 20px;
@@ -57,7 +45,7 @@
   height: 40px;
 }
 
-#clear-board {
+#clear-board, #generate-board, #board-size {
   padding: 5px 15px;
   font-size: 0.9em;
 }
